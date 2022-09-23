@@ -18,7 +18,7 @@ let currentLevel = 1;
 let tableSize = [];
 let memoryPoint = 0;
 let timeStarted = '';
-const findCardAudio = new Audio('audio/findcard-sound.wav');
+const findCardAudio = new Audio('./assets/audio/findcard-sound.wav');
 let multiplayerFlag = false;
 let mpEndGameFlag = false;
 let multiplayerObj = {
@@ -38,7 +38,7 @@ let levelsRounds = {
 
 for (let elem of document.querySelectorAll('.level')) {
     elem.addEventListener('click', startGame);
-    elem.children[3].style.backgroundImage = 'url("img/play_icon.png")';
+    elem.children[3].style.backgroundImage = 'url("./assets/img/play_icon.png")';
 }
 
 for (let elem of document.querySelectorAll('.game-mode__button')) {
@@ -145,7 +145,7 @@ function createTable(n, m) {
             let cell = row.insertCell(l);
             let card = allCards[count++];
             let image = card.dataset.imageid;
-            card.children[1].style.backgroundImage = `url('cards_img/animal/animal_${image}.png')`;
+            card.children[1].style.backgroundImage = `url('./assets/cards_img/animal/animal_${image}.png')`;
             card.children[0].children[0].textContent = count;
             cell.append(card);
             cell.style.width = `${cardWidth}%`;
@@ -204,7 +204,7 @@ function endGame() {
     document.querySelector('.window-win h1').innerHTML = `You win this game!`;
     document.querySelector('.window-win__text').innerHTML = `You get ${currentLevel} Memory Points<br/>
     Moves: ${currentMoves}<br/>Time: ${Math.floor(timePlayed / 60)}:${(timePlayed % 60).toString().padStart(2,'0')}`;
-    let winAudio = new Audio('audio/win-applause-sound.wav');
+    let winAudio = new Audio('./assets/audio/win-applause-sound.wav');
     winAudio.play();
     completedLevelStyle();
 }
@@ -212,7 +212,7 @@ function endGame() {
 function completedLevelStyle () {
     const levelBlock = document.querySelector(`.level[data-level='${currentLevel}']`);
     levelBlock.style.backgroundColor = '#daffd4';
-    levelBlock.children[3].style.backgroundImage = 'url("img/check_icon.png")';
+    levelBlock.children[3].style.backgroundImage = 'url("./assets/img/check_icon.png")';
     if(window.matchMedia("(max-width: 767px)").matches){
         levelBlock.children[3].style.width = levelBlock.children[3].style.height = '40px';
         levelBlock.children[3].style.marginRight = '6px';
@@ -241,7 +241,7 @@ function loseMultiplayerGame(data){
     document.querySelector('.window-win h1').innerHTML = `You lose this game`;
     document.querySelector('.window-win__text').innerHTML = `You get 0 Memory Points<br/>
     Oponent Moves: ${data.moves}<br/>Time: ${Math.floor(data.time / 60)}:${(data.time % 60).toString().padStart(2,'0')}`;
-    let loseAudio = new Audio('audio/lose_sound.wav');
+    let loseAudio = new Audio('./assets/audio/lose_sound.wav');
     loseAudio.play();
 }
 
@@ -278,7 +278,7 @@ function addStarsRange() {
     this.display = 'flex';
     for (let i = 0; i < starsCount; i++) {
         let star = document.createElement('img');
-        star.src = 'img/star_icon.png';
+        star.src = './assets/img/star_icon.png';
         this.append(star);
     }
 }
